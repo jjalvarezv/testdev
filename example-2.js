@@ -2,7 +2,7 @@ import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
 // eslint-disable-next-line no-unused-vars
-function deleteHasCar(listaCompanies, hasCar) {
+export function deleteHasCar(listaCompanies, hasCar) {
   // eslint-disable-next-line guard-for-in
   for (const i in listaCompanies) {
     // Nueva lista para agregar los elementos

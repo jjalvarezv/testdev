@@ -2,7 +2,7 @@ import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
 // eslint-disable-next-line no-unused-vars
-function mergeUsers(listaCompanies) {
+export function mergeUsers(listaCompanies) {
   const newUsers = [];
   // eslint-disable-next-line guard-for-in
   for (const i in listaCompanies) {

@@ -1,9 +1,51 @@
 import {cleanConsole, createAll} from './data';
+import {mergeUsers} from './example-4';
 const companies = createAll();
 
+// eslint-disable-next-line no-unused-vars
+function ejm5(listaCompanies) {
+  // Guardo el total de usuarios
+  const users = mergeUsers(listaCompanies);
+  // Nuevo Objeto a retornar
+  const obj = {
+    'size': users.length,
+    'average': calcularAVG(users),
+    'hasCar': totalConCarro(users),
+    'averageWithCar': avgCar(users),
+  };
+  return obj;
+}
+
+function calcularAVG(Usuarios) {
+  // Calculamos el total iterando sobre cada user y accediendo a la propiedad age
+  let total = 0;
+  for (const usuario of Usuarios) {
+    total += usuario.age;
+  }
+  // Se calcula avg y se retorna
+  const avg = total/Usuarios.length;
+  return avg;
+}
+
+function totalConCarro(Usuarios) {
+  // Hallamos el total de users cuya propiedad car es igual a true
+  let total = 0;
+  for (const usuario of Usuarios) {
+    if (usuario.car == true) {
+      total += 1;
+    }
+  }
+  return total;
+}
+
+function avgCar(Usuarios) {
+  // Calculo el avg y retorno el promedio de los users que tienen carro
+  const avg = totalConCarro(Usuarios)/Usuarios.length;
+  return avg*100;
+}
 
 cleanConsole(5, companies);
-console.log('---- EXAMPLE 5 --- ', 'Put here your function');
+console.log('---- EXAMPLE 5 --- ', 'ejm5(companies)');
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
