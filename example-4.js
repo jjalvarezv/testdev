@@ -25,7 +25,7 @@ export function mergeUsers(listaCompanies) {
 }
 
 cleanConsole(4, companies);
-console.log('---- EXAMPLE 4 --- ', mergeUsers(companies));
+console.log('---- EXAMPLE 4 --- ', 'mergeUsers(companies)');
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

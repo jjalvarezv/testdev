@@ -2,16 +2,78 @@ import {cleanConsole, createAll} from './data';
 
 const companies = createAll();
 
+function nombreCompany(listaCompanies, id) {
+  // retorno el nombre de dicha company
+  return listaCompanies[id].name;
+}
+
+function eliminarCompany(listaCompanies, id) {
+  const newList = [];
+  // Compruebo que el id que busco no se agregue a la nueva lista
+  for (const i in listaCompanies) {
+    if (listaCompanies[i].id != id) {
+      newList.push(listaCompanies[i]);
+    }
+  }
+  listaCompanies = newList;
+  return listaCompanies;
+}
+
+function agregarUser(listaCompanies, id, newUser) {
+  // Selecciono los users de la company con el correspondiente id
+  const usersCompany = listaCompanies[id].users;
+  newUser.id = Math.floor(Math.random() * usersCompany.length);
+  // agrego el user
+  usersCompany.push(newUser);
+  // Aumento usersLength
+  listaCompanies.usersLenth = usersCompany.length;
+  return listaCompanies;
+}
+
+function eliminarUser(listaCompanies, idCompany, idUser) {
+  const newList = [];
+  // Itero sobre los users de la compañia con el id correspondiente
+  for (const user of listaCompanies[idCompany].users) {
+    if (user.id != idUser) {
+      // Creo mi nueva lista
+      newList.push(user);
+    }
+  }
+  // Asigno la nueva lista a users
+  listaCompanies[idCompany].users = newList;
+  return listaCompanies;
+}
+
+function transferirUser(listaCompanies, compDesde, compDestino, idUser) {
+  // Variable para guardar el usuario a transferir
+  let user;
+
+  for (const usuario of listaCompanies[compDesde].users) {
+    if (usuario.id == idUser) user = usuario;
+  }
+  // Hago uso de la funcion eliminar usuario
+  listaCompanies = eliminarUser(listaCompanies, compDesde, idUser);
+  // Agrego el usuario guardado
+  listaCompanies = agregarUser(listaCompanies, compDestino, user);
+  return listaCompanies;
+}
+
+
 cleanConsole(7, companies);
-console.log('---- EXAMPLE 7 part 1 --- ', 'Put here your function');
-console.log('---- EXAMPLE 7 part 2 --- ', 'Put here your function');
+console.log('---- EXAMPLE 7 part 1 --- ', nombreCompany(companies, 5));
+console.log('---- EXAMPLE 7 part 2 --- ', eliminarCompany(companies, 5));
 console.log('---- EXAMPLE 7 part 3 --- ', 'Put here your function');
-console.log('---- EXAMPLE 7 part 4 --- ', 'Put here your function');
+console.log('---- EXAMPLE 7 part 4 --- ', agregarUser(companies, 0, {
+  'firstName': 'Juan',
+  'lastName': 'Delgado',
+  'age': 35,
+  'car': true,
+}));
 console.log('---- EXAMPLE 7 part 5 --- ', 'Put here your function');
-console.log('---- EXAMPLE 7 part 6 --- ', 'Put here your function');
+console.log('---- EXAMPLE 7 part 6 --- ', eliminarUser(companies, 0, 2));
 console.log('---- EXAMPLE 7 part 7 --- ', 'Put here your function');
 console.log('---- EXAMPLE 7 part 8 --- ', 'Put here your function');
-console.log('---- EXAMPLE 7 part 9 --- ', 'Put here your function');
+console.log('---- EXAMPLE 7 part 9 --- ', transferirUser(companies, 0, 1, 0));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

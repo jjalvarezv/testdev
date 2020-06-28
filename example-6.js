@@ -1,9 +1,27 @@
 import {cleanConsole, createAll} from './data';
+import {mergeUsers} from './example-4';
+import {limpiarUndefined} from './example-1';
 
 const companies = createAll();
 
+// eslint-disable-next-line no-unused-vars
+function ejm5(listaCompanies) {
+  // Defino objeto a retornar
+  const newObj = {};
+  // LLamo la funcion para eliminar undefined y evitar errores, y almaceno users
+  limpiarUndefined(companies);
+  const usuarios = mergeUsers(listaCompanies);
+  // Itero sobre cada usuario
+  for (const usuario of usuarios) {
+    // Almaceno nuevo nombre
+    const newProperty = usuario.firstName+usuario.lastName+usuario.age;
+    newObj[newProperty] = usuario.car;
+  }
+  return newObj;
+}
+
 cleanConsole(6, companies);
-console.log('---- EXAMPLE 6 --- ', 'Put here your function');
+console.log('---- EXAMPLE 6 --- ', 'ejm5(companies)');
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

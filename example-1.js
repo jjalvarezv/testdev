@@ -13,7 +13,6 @@ export function limpiarUndefined(listaCompanies) {
     // Recorro la lista de objetos de users
     for (const usuario of company) {
       // Reeplazo los valores undefined en cada usuario
-
       if (usuario.firstName === undefined) {
         usuario.firstName = '';
       }
