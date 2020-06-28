@@ -1,8 +1,39 @@
 import {createAll, cleanConsole} from './data';
 const companies = createAll();
 
+function limpiarUndefined(listaCompanies) {
+  // Recorro la lista de objetos de las compañias
+  // eslint-disable-next-line guard-for-in
+  for (const i in listaCompanies) {
+    // Capitalizo los nombres de las compañias
+    listaCompanies[i].name = capitalize(listaCompanies[i].name);
+    const company = Object.values(listaCompanies[i].users);
+
+    // Recorro la lista de objetos de users
+    for (const usuario of company) {
+      // Reeplazo los valores undefined en cada usuario
+
+      if (usuario.firstName === undefined) {
+        usuario.firstName = '';
+      } else if (usuario.lastName === undefined) {
+        usuario.lastName = '';
+      } else {
+        // Capitalizo la primera letra de las nombres que no son undefined
+        usuario.firstName = capitalize(usuario.firstName);
+        usuario.lastName = capitalize(usuario.lastName);
+      }
+    }
+  }
+  return (listaCompanies);
+}
+
+// Funcion para cambiar colocar mayuscula la primera letra
+function capitalize(palabra) {
+  return palabra[0].toUpperCase() + palabra.slice(1);
+}
+
 cleanConsole(1, companies);
-console.log('---- EXAMPLE 1 --- ', 'Put here your function');
+console.log('---- EXAMPLE 1 --- ', limpiarUndefined(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

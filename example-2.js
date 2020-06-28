@@ -1,8 +1,31 @@
 import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
+function ejm2(listaCompanies, hasCar) {
+  // eslint-disable-next-line guard-for-in
+  for (const i in listaCompanies) {
+    const Usuarios = Object.values(listaCompanies[i].users);
+    const id = 0;
+    // Recorro la lista de objetos de users
+    for (const usuario of Usuarios) {
+      if (usuario.car != hasCar) {
+        delete usuario.firstName;
+        delete usuario.lastName;
+        delete usuario.age;
+        delete usuario.car;
+        delete usuario.id;
+
+        // remove object
+        Usuarios.splice(id, 1);
+        id = id+1;
+      }
+    }
+  }
+  return listaCompanies;
+}
+
 cleanConsole(2, companies);
-console.log('---- EXAMPLE 2 --- ', 'Put here your function');
+console.log('---- EXAMPLE 2 --- ', ejm2(companies, true));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
