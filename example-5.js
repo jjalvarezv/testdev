@@ -1,6 +1,7 @@
 import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
+
 cleanConsole(5, companies);
 console.log('---- EXAMPLE 5 --- ', 'Put here your function');
 

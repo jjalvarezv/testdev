@@ -1,31 +1,28 @@
 import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
-function ejm2(listaCompanies, hasCar) {
+// eslint-disable-next-line no-unused-vars
+function deleteHasCar(listaCompanies, hasCar) {
   // eslint-disable-next-line guard-for-in
   for (const i in listaCompanies) {
+    // Nueva lista para agregar los elementos
+    const newList =[];
     const Usuarios = Object.values(listaCompanies[i].users);
-    const id = 0;
-    // Recorro la lista de objetos de users
+    // Itero sobre cada user
     for (const usuario of Usuarios) {
-      if (usuario.car != hasCar) {
-        delete usuario.firstName;
-        delete usuario.lastName;
-        delete usuario.age;
-        delete usuario.car;
-        delete usuario.id;
-
-        // remove object
-        Usuarios.splice(id, 1);
-        id = id+1;
+      if (usuario.car == hasCar) {
+        // Agrego elementos a mi lista
+        newList.push(usuario);
       }
     }
+    // Asigno elementos compatibles a users
+    listaCompanies[i].users = newList;
   }
   return listaCompanies;
 }
 
 cleanConsole(2, companies);
-console.log('---- EXAMPLE 2 --- ', ejm2(companies, true));
+console.log('---- EXAMPLE 2 --- ', 'deleteHasCar(companies, true)');
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

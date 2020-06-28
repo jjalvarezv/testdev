@@ -1,8 +1,31 @@
 import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
+// eslint-disable-next-line no-unused-vars
+function mergeUsers(listaCompanies) {
+  const newUsers = [];
+  // eslint-disable-next-line guard-for-in
+  for (const i in listaCompanies) {
+    const Usuarios = Object.values(listaCompanies[i].users);
+    const companyActual = listaCompanies[i].name;
+
+    for (const usuario of Usuarios) {
+      // Se agrega la propiedad company a cada user
+      usuario.company = companyActual;
+      newUsers.push(usuario);
+    }
+  }
+  // Ordeno segun la edad
+  newUsers.sort((a, b) => {
+    if (a.age > b.age) return -1;
+    else if (a.age < b.age) return 1;
+    else return 0;
+  });
+  return newUsers;
+}
+
 cleanConsole(4, companies);
-console.log('---- EXAMPLE 4 --- ', 'Put here your function');
+console.log('---- EXAMPLE 4 --- ', mergeUsers(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

@@ -1,7 +1,8 @@
 import {createAll, cleanConsole} from './data';
 const companies = createAll();
 
-function limpiarUndefined(listaCompanies) {
+// eslint-disable-next-line no-unused-vars
+export function limpiarUndefined(listaCompanies) {
   // Recorro la lista de objetos de las compañias
   // eslint-disable-next-line guard-for-in
   for (const i in listaCompanies) {
@@ -15,15 +16,25 @@ function limpiarUndefined(listaCompanies) {
 
       if (usuario.firstName === undefined) {
         usuario.firstName = '';
-      } else if (usuario.lastName === undefined) {
+      }
+      if (usuario.lastName === undefined) {
         usuario.lastName = '';
-      } else {
+      }
+      if (usuario.firstName != '') {
         // Capitalizo la primera letra de las nombres que no son undefined
         usuario.firstName = capitalize(usuario.firstName);
+      } else if (usuario.lastName != '') {
+        // Capitalizo la primera letra de las apellidos que no son undefined
         usuario.lastName = capitalize(usuario.lastName);
       }
     }
   }
+  // Ordeno segun la usersLength
+  listaCompanies.sort((a, b) => {
+    if (a.usersLength > b.usersLength) return -1;
+    else if (a.usersLength < b.usersLength) return 1;
+    else return 0;
+  });
   return (listaCompanies);
 }
 
@@ -33,7 +44,7 @@ function capitalize(palabra) {
 }
 
 cleanConsole(1, companies);
-console.log('---- EXAMPLE 1 --- ', limpiarUndefined(companies));
+console.log('---- EXAMPLE 1 --- ', 'limpiarUndefined(companies)');
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
